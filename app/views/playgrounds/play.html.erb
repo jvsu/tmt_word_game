@@ -1,0 +1,34 @@
+<head>
+	<title>TMT Word Game</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+	<div id='game_container'>
+		<div id='canvas'></div> 
+	<!-- This is the score box -->
+		<div id='score'>0</div>
+	<!-- This is where you enter the words  -->
+		<input type='text' id='word' name='word' placeholder="Enter Word" value="">
+	</div>
+	<!-- Canvas is where the area the words drop down-->
+	
+
+	<!-- This will basically start the game and call a bunch of methods in the game file -->
+	<script type='text/javascript'>
+		var a = new Playground('canvas','word','score'); //this instantiates playground in game.js, we are sending words that will be the name of selectors 
+		setInterval("a.playGame()",500); //keeps calling the play game function every .5 seconds
+		$(document).ready(function()
+		{
+			$("#word").focus(); // basically put the text cursor in this box
+			$("#word").on("keyup",function(){ // after a key is pressed get the value in the box and send it to the checkWord method. 
+				a.checkWord($("#word").val());
+			});
+		});
+	</script>
+</body>
+</html>
